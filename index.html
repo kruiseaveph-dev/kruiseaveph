@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kruise Ave PH - Your Trusted Travel Partner | BIR & SEC Registered</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230047AB' width='100' height='100'/><text x='50' y='65' font-size='60' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'>K</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cobalt-blue: #0047AB;
+            --luxe-shell: #F8F1E6;
+            --sunburst-gold: #FFD91C;
+            --cloud-white: #F9F9F9;
+            --obsidian-black: #101010;
+            --light-gray: #F5F5F5;
+            --border-light: #E8E8E8;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--obsidian-black);
+            background-color: var(--cloud-white);
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--cloud-white);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background: var(--cobalt-blue);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--cloud-white);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--cobalt-blue);
+            letter-spacing: -0.5px;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .trust-badge {
+            font-size: 0.55rem;
+            color: var(--cloud-white);
+            background: var(--cobalt-blue);
+            padding: 0.2rem 0.4rem;
+            border-radius: 2px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--obsidian-black);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-link:hover {
+            color: var(--cobalt-blue);
+        }
+
+        .nav-link.active {
+            color: var(--cobalt-blue);
+            border-bottom-color: var(--cobalt-blue);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.65rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link.dropdown-open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--cloud-white);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            z-index: 999;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.open {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            color: var(--obsidian-black);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-gray);
+            color: var(--cobalt-blue);
+            padding-left: 1.5rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--obsidian-black);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: var(--cloud-white);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 2rem;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        .mobile-nav-overlay.active {
+            display: block;
+        }
+
+        .mobile-nav-overlay .nav-link {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.8rem 0;
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .mobile-nav-overlay .dropdown-menu {
+            position: static;
+            border: none;
+            box-shadow: none;
+            background: var(--light-gray);
+            margin-top: 0;
+            border-radius: 0;
+        }
+
+        .mobile-nav-overlay .dropdown-menu a {
+            padding: 0.6rem 2rem;
+            font-size: 0.8rem;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            background: linear-gradient(135deg, rgba(248, 241, 230, 0.9) 0%, rgba(249, 249, 249, 0.95) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 71, 171, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            color: var(--obsidian-black);
+        }
+
+        .hero h1 .highlight {
+            color: var(--cobalt-blue);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #5a5a5a;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.95rem 2.8rem;
+            background: var(--cobalt-blue);
+            color: var(--cloud-white);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0, 71, 171, 0.15);
+        }
+
+        .cta-button:hover {
+            background: #003580;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 71, 171, 0.25);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--obsidian-black);
+        }
+
+        .section-title .accent {
+            color: var(--cobalt-blue);
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #5a5a5a;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ===== WHY US SECTION ===== */
+        .why-us {
+            background: var(--luxe-shell);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sunburst-gold);
+            border-radius: 50%;
+            color: var(--obsidian-black);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .benefit-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--obsidian-black);
+        }
+
+        .benefit-item p {
+            font-size: 0.9rem;
+            color: #5a5a5a;
+            line-height: 1.6;
+        }
+
+        /* ===== BOOKING FORM SECTION ===== */
+        .booking-section {
+            background: var(--light-gray);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .booking-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--obsidian-black);
+        }
+
+        .booking-section > p {
+            color: #5a5a5a;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-placeholder {
+            background: var(--cloud-white);
+            border: 2px dashed var(--border-light);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #8a8a8a;
+        }
+
+        .form-placeholder strong {
+            color: var(--obsidian-black);
+        }
+
+        .visa-note {
+            background: #E3F2FD;
+            border-left: 4px solid var(--cobalt-blue);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .visa-note strong {
+            color: var(--cobalt-blue);
+        }
+
+        .visa-note p {
+            color: var(--obsidian-black);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ===== PAYMENT GRID ===== */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .payment-card {
+            background: var(--cloud-white);
+            border: 1px solid var(--border-light);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-card:hover {
+            border-color: var(--cobalt-blue);
+            box-shadow: 0 8px 24px rgba(0, 71, 171, 0.1);
+        }
+
+        .payment-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--obsidian-black);
+        }
+
+        .payment-card p {
+            font-size: 0.9rem;
+            color: #5a5a5a;
+            margin-bottom: 1rem;
+        }
+
+        .payment-details {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--obsidian-black);
+            border: 1px solid var(--border-light);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-item {
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--light-gray);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            color: var(--obsidian-black);
+        }
+
+        .faq-question:hover {
+            background: #EFEFEF;
+            color: var(--cobalt-blue);
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--cobalt-blue);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            background: var(--cloud-white);
+            display: none;
+            color: #5a5a5a;
+            line-height: 1.7;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* ===== RESOURCES PAGE ===== */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: var(--cloud-white);
+            border: 1px solid var(--border-light);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            border-color: var(--cobalt-blue);
+            box-shadow: 0 8px 24px rgba(0, 71, 171, 0.1);
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--obsidian-black);
+        }
+
+        .resource-card p {
+            font-size: 0.9rem;
+            color: #5a5a5a;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: var(--cobalt-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: var(--sunburst-gold);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-section {
+            background: var(--cobalt-blue);
+            color: var(--cloud-white);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .contact-box {
+            background: rgba(248, 241, 230, 0.12);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            border: 1px solid rgba(248, 241, 230, 0.2);
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-item-value {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(248, 241, 230, 0.2);
+            border-radius: 50%;
+            color: var(--cloud-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            border: 1px solid rgba(248, 241, 230, 0.3);
+        }
+
+        .social-link:hover {
+            background: var(--sunburst-gold);
+            color: var(--obsidian-black);
+            transform: translateY(-3px);
+            border-color: var(--sunburst-gold);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--obsidian-black);
+            color: var(--cloud-white);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--luxe-shell);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--cobalt-blue);
+            font-size: 1rem;
+        }
+
+        .footer-logo-text {
+            font-weight: 700;
+            color: var(--cloud-white);
+        }
+
+        .footer-section h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--cloud-white);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-section a:hover {
+            color: var(--sunburst-gold);
+        }
+
+        .footer-section p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FLOATING CHAT BUTTON ===== */
+        .chat-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--cobalt-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 71, 171, 0.25);
+            transition: all 0.3s ease;
+            z-index: 999;
+            color: var(--cloud-white);
+            font-size: 1.5rem;
+            border: none;
+        }
+
+        .chat-button:hover {
+            background: #003580;
+            transform: scale(1.1);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                padding: 0.8rem;
+            }
+
+            .header-left {
+                gap: 0.8rem;
+                order: 1;
+            }
+
+            .tab-nav {
+                display: none;
+                gap: 0.3rem;
+                order: 3;
+                width: 100%;
+                margin-top: 0.8rem;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 2;
+            }
+
+            .hero {
+                margin-top: 140px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .payment-grid,
+            .benefits-grid,
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-button {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            .trust-badges {
+                gap: 0.2rem;
+            }
+
+            .trust-badge {
+                font-size: 0.5rem;
+                padding: 0.15rem 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="logo-placeholder">K</div>
+            <div class="logo-section">
+                <div class="logo-text">kruiseaveph</div>
+                <div class="trust-badges">
+                    <span class="trust-badge">BIR</span>
+                    <span class="trust-badge">SEC</span>
+                </div>
+            </div>
+        </div>
+        <div class="tab-nav">
+            <div class="nav-item">
+                <button class="nav-link active" onclick="showPage(event, 'home')">Home</button>
+            </div>
+            
+            <div class="nav-item">
+                <button class="nav-link" onclick="toggleDropdown(event, 'services-menu')">
+                    Services
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dropdown-menu" id="services-menu">
+                    <a onclick="showPage(event, 'flights')">Flight Bookings</a>
+                    <a onclick="showPage(event, 'hotels')">Hotel Bookings</a>
+                    <a onclick="showPage(event, 'tours')">Tour Packages</a>
+                    <a onclick="showPage(event, 'visa')">Visa Processing</a>
+                    <a onclick="showPage(event, 'ferry')">Ferry Bookings</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <button class="nav-link" onclick="toggleDropdown(event, 'resources-menu')">
+                    Resources
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dropdown-menu" id="resources-menu">
+                    <a onclick="showPage(event, 'payment')">Payment Options</a>
+                    <a onclick="showPage(event, 'faq')">FAQ</a>
+                    <a href="#">Travel Blog</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <button class="nav-link" onclick="showPage(event, 'contact')">Contact</button>
+            </div>
+        </div>
+        <button class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobileMenu">
+        <div class="nav-item">
+            <button class="nav-link" onclick="showPage(event, 'home')">Home</button>
+        </div>
+        
+        <div class="nav-item">
+            <button class="nav-link" onclick="toggleDropdown(event, 'mobile-services')">
+                Services
+                <span class="dropdown-arrow">▼</span>
+            </button>
+            <div class="dropdown-menu" id="mobile-services">
+                <a onclick="showPage(event, 'flights')">Flight Bookings</a>
+                <a onclick="showPage(event, 'hotels')">Hotel Bookings</a>
+                <a onclick="showPage(event, 'tours')">Tour Packages</a>
+                <a onclick="showPage(event, 'visa')">Visa Processing</a>
+                <a onclick="showPage(event, 'ferry')">Ferry Bookings</a>
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <button class="nav-link" onclick="toggleDropdown(event, 'mobile-resources')">
+                Resources
+                <span class="dropdown-arrow">▼</span>
+            </button>
+            <div class="dropdown-menu" id="mobile-resources">
+                <a onclick="showPage(event, 'payment')">Payment Options</a>
+                <a onclick="showPage(event, 'faq')">FAQ</a>
+                <a href="#">Travel Blog</a>
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <button class="nav-link" onclick="showPage(event, 'contact')">Contact</button>
+        </div>
+    </div>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover the World with <span class="highlight">Kruise Ave</span></h1>
+                <p>Your trusted partner for unforgettable travel experiences. Flights, hotels, ferries, and visa assistance—all in one platform.</p>
+                <button class="cta-button" onclick="showPage(event, 'flights')">Book Your Trip</button>
+            </div>
+        </section>
+
+        <section id="why-us" class="why-us">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose <span class="accent">Kruise Ave?</span></h2>
+                <p class="section-subtitle">We're your trusted travel partner</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                        <h4>Local Expertise</h4>
+                        <p>Based in Laguna, Philippines—we understand the Southeast Asian travel landscape.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                        <h4>24/7 Support</h4>
+                        <p>Round-the-clock assistance for bookings, changes, and emergencies.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                        <h4>Best Rates</h4>
+                        <p>Competitive pricing and exclusive deals on flights, hotels, and services.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                        <h4>Custom Itineraries</h4>
+                        <p>Personalized travel plans tailored to your preferences and budget.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FLIGHT PAGE -->
+    <div id="flights" class="page">
+        <section style="margin-top: 80px;">
+            <div class="section-header">
+                <h2 class="section-title">Flight <span class="accent">Booking</span></h2>
+                <p class="section-subtitle">Find and book domestic and international flights with the best rates and flexible options.</p>
+            </div>
+
+            <div class="booking-section">
+                <h2>Book Your Flight</h2>
+                <p>Tell us your travel details and we'll find the best flight options for you.</p>
+                <div class="form-placeholder">
+                    ✈️ <strong>ClickUp Form Embed Here</strong>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Replace this with your Flight Booking ClickUp form</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- HOTEL PAGE -->
+    <div id="hotels" class="page">
+        <section style="margin-top: 80px;">
+            <div class="section-header">
+                <h2 class="section-title">Hotel <span class="accent">Booking</span></h2>
+                <p class="section-subtitle">Browse and reserve accommodations from budget-friendly to luxury stays worldwide.</p>
+            </div>
+
+            <div class="booking-section">
+                <h2>Book Your Hotel</h2>
+                <p>Tell us where you want to stay and we'll find the best hotels at competitive rates.</p>
+                <div class="form-placeholder">
+                    🏨 <strong>ClickUp Form Embed Here</strong>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Replace this with your Hotel Booking ClickUp form</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TOURS PAGE -->
+    <div id="tours" class="page">
+        <section style="margin-top: 80px;">
+            <div class="section-header">
+                <h2 class="section-title">Tour <span class="accent">Packages</span></h2>
+                <p class="section-subtitle">All-inclusive curated tours with expert guides, activities, and unforgettable experiences.</p>
+            </div>
+
+            <div class="booking-section">
+                <h2>Customize Your Tour</h2>
+                <p>Tell us your destination and interests, and we'll create the perfect tour package for you.</p>
+                <div class="form-placeholder">
+                    🎒 <strong>ClickUp Form Embed Here</strong>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Replace this with your Tour Booking ClickUp form</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VISA PAGE -->
+    <div id="visa" class="page">
+        <section style="margin-top: 80px;">
+            <div class="section-header">
+                <h2 class="section-title">Visa <span class="accent">Processing</span></h2>
+                <p class="section-subtitle">Expert guidance and support for visa processing.</p>
+            </div>
+
+            <div class="booking-section">
+                <div class="visa-note">
+                    <strong>📋 Important Note:</strong>
+                    <p>We process <strong>Tourist Visas</strong> only. For other visa types (Work, Residence, Student, etc.), please consult the relevant embassy directly.</p>
+                </div>
+
+                <h2>Apply for Tourist Visa</h2>
+                <p>Let us handle your visa requirements. Submit your details below and our team will guide you through the process.</p>
+                <div class="form-placeholder">
+                    📄 <strong>ClickUp Form Embed Here</strong>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Replace this with your Visa Processing ClickUp form</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FERRY PAGE -->
+    <div id="ferry" class="page">
+        <section style="margin-top: 80px;">
+            <div class="section-header">
+                <h2 class="section-title">Ferry <span class="accent">Booking</span></h2>
+                <p class="section-subtitle">Easy island-hopping with reliable ferry reservations to popular Philippine destinations.</p>
+            </div>
+
+            <div class="booking-section">
+                <h2>Book Your Ferry</h2>
+                <p>Island-hop with ease. Reserve your ferry tickets now.</p>
+                <div class="form-placeholder">
+                    🚢 <strong>ClickUp Form Embed Here</strong>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Replace this with your Ferry Booking ClickUp form</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAYMENT PAGE -->
+    <div id="payment" class="page">
+        <section style="margin-top: 80px;">
+            <div class="section-header">
+                <h2 class="section-title">Payment <span class="accent">Options</span></h2>
+                <p class="section-subtitle">We offer secure and convenient payment methods for your bookings.</p>
+            </div>
+
+            <div class="payment-grid">
+                <div class="payment-card">
+                    <div class="payment-icon">💳</div>
+                    <h4>Credit Card</h4>
+                    <p>Visa, Mastercard, and American Express accepted. 5% processing fee applies.</p>
+                    <div class="payment-details">
+                        <strong>Processing Gateway:</strong><br>
+                        PayPal or PayMongo<br>
+                        <strong>Fee:</strong> 5% per transaction
+                    </div>
+                </div>
+
+                <div class="payment-card">
+                    <div class="payment-icon">🏦</div>
+                    <h4>Bank Transfer</h4>
+                    <p>Direct transfer to our bank accounts. No additional processing fees.</p>
+                    <div class="payment-details">
+                        <strong>BDO:</strong> [Your Account]<br>
+                        <strong>MetroBank:</strong> [Your Account]<br>
+                        <strong>Fee:</strong> None
+                    </div>
+                </div>
+
+                <div class="payment-card">
+                    <div class="payment-icon">📱</div>
+                    <h4>GCash / Maya</h4>
+                    <p>Quick and easy mobile payment. Instant confirmation of payment.</p>
+                    <div class="payment-details">
+                        <strong>GCash:</strong> [Your Number]<br>
+                        <strong>Maya:</strong> [Your Account]<br>
+                        <strong>Fee:</strong> None
+                    </div>
+                </div>
+
+                <div class="payment-card">
+                    <div class="payment-icon">🌐</div>
+                    <h4>Online Banking</h4>
+                    <p>Safe and secure online banking transfers.</p>
+                    <div class="payment-details">
+                        <strong>Supported Banks:</strong><br>
+                        BDO, BPI, Metrobank, Unionbank<br>
+                        <strong>Fee:</strong> Varies by bank
+                    </div>
+                </div>
+
+                <div class="payment-card">
+                    <div class="payment-icon">💰</div>
+                    <h4>Installment Plans</h4>
+                    <p>Flexible payment options for larger bookings.</p>
+                    <div class="payment-details">
+                        <strong>Available:</strong> Yes<br>
+                        Contact us for details<br>
+                        <strong>Fee:</strong> Varies
+                    </div>
+                </div>
+
+                <div class="payment-card">
+                    <div class="payment-icon">🎟️</div>
+                    <h4>Bank Transfer via Installment</h4>
+                    <p>Spread your payments across multiple installments.</p>
+                    <div class="payment-details">
+                        <strong>Duration:</strong> 2-12 months<br>
+                        Contact support for options<br>
+                        <strong>Fee:</strong> Negotiable
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FAQ PAGE -->
+    <div id="faq" class="page">
+        <section style="margin-top: 80px;">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked <span class="accent">Questions</span></h2>
+                <p class="section-subtitle">Find answers to common questions about our services and booking process.</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I book a flight or hotel?</span>
+                        <span class="faq-toggle">⌄</span>
+                    </div>
+                    <div class="faq-answer">
+                        Simply fill out our booking form with your travel details. Our team will get back to you within 24 hours with the best options available for your needs.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <span class="faq-toggle">⌄</span>
+                    </div>
+                    <div class="faq-answer">
+                        We accept credit cards (Visa, Mastercard, Amex), bank transfers, GCash, Maya, and online banking. All transactions are processed securely through trusted payment gateways. Visit our Payment Options page for more details.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I cancel or modify my booking?</span>
+                        <span class="faq-toggle">⌄</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, cancellations and modifications are possible depending on the supplier's terms. Contact us immediately if you need to make changes, and we'll assist you. Cancellation policies vary by service, so we'll provide details when confirming your booking.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does visa processing take?</span>
+                        <span class="faq-toggle">⌄</span>
+                    </div>
+                    <div class="faq-answer">
+                        Processing time varies by country, typically ranging from 5-15 business days. We process tourist visas only. We'll provide you with an estimated timeline once we review your documents.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer group discounts?</span>
+                        <span class="faq-toggle">⌄</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! We offer special rates for group bookings. Contact our team to discuss group packages and pricing options. We can customize tours and travel arrangements for groups of any size.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is your customer support availability?</span>
+                        <span class="faq-toggle">⌄</span>
+                    </div>
+                    <div class="faq-answer">
+                        We're available 24/7 to assist you. You can reach us via email, phone, Facebook Messenger, or our contact form. We typically reply to emails within 24 hours and Messenger messages within a few minutes.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer travel insurance?</span>
+                        <span class="faq-toggle">⌄</span>
+                    </div>
+                    <div class="faq-answer">
+                        Travel insurance is available as an add-on to most packages. Contact us to discuss insurance options and coverage details for your trip.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What documents do I need for a tourist visa?</span>
+                        <span class="faq-toggle">⌄</span>
+                    </div>
+                    <div class="faq-answer">
+                        Required documents vary by destination and your nationality. Common requirements include a valid passport, proof of funds, travel itinerary, and accommodation booking. Contact us for specific requirements for your destination.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <section style="margin-top: 80px;">
+            <div class="section-header">
+                <h2 class="section-title">Get in <span class="accent">Touch</span></h2>
+                <p class="section-subtitle">Have questions about our tours or need a custom itinerary? We're here to help!</p>
+            </div>
+
+            <div class="contact-section">
+                <h2>Ready to Plan Your Next Adventure?</h2>
+                <p>Contact us now and let our travel experts help you create an unforgettable experience.</p>
+
+                <div class="contact-box">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">💬</div>
+                        <div class="contact-item-label">Facebook Messenger</div>
+                        <div class="contact-item-value">Message us on Messenger<br><small>Usually reply within a few minutes</small></div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📧</div>
+                        <div class="contact-item-label">Email</div>
+                        <div class="contact-item-value">hello@kruiseave.com<br><small>We reply within 24 hours</small></div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-label">Office</div>
+                        <div class="contact-item-value">Laguna City<br><small>Metro Manila, Philippines</small></div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-label">Phone</div>
+                        <div class="contact-item-value">+63 (2) XXXX-XXXX<br><small>Monday to Friday, 9 AM - 5 PM</small></div>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-link" title="Facebook">f</a>
+                    <a href="#" class="social-link" title="Instagram">📷</a>
+                    <a href="#" class="social-link" title="TikTok">♪</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">K</div>
+                    <div class="footer-logo-text">Kruise Ave</div>
+                </div>
+                <p>Your trusted partner for unforgettable travel experiences worldwide. BIR & SEC Registered.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a onclick="showPage(event, 'flights')">Flight Bookings</a></li>
+                    <li><a onclick="showPage(event, 'hotels')">Hotel Bookings</a></li>
+                    <li><a onclick="showPage(event, 'tours')">Tour Packages</a></li>
+                    <li><a onclick="showPage(event, 'ferry')">Ferry Bookings</a></li>
+                    <li><a onclick="showPage(event, 'visa')">Visa Processing</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a onclick="showPage(event, 'payment')">Payment Options</a></li>
+                    <li><a onclick="showPage(event, 'faq')">FAQ</a></li>
+                    <li><a href="#">Travel Blog</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Payment Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cancellation Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li>📍 Laguna City, Philippines</li>
+                    <li><a href="mailto:hello@kruiseave.com">📧 hello@kruiseave.com</a></li>
+                    <li><a href="#">💬 Message us</a></li>
+                    <li><a href="#">📞 +63 (2) XXXX-XXXX</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Kruise Ave PH. BIR & SEC Registered. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING CHAT BUTTON -->
+    <button class="chat-button" onclick="showPage(event, 'contact')" title="Chat with us">💬</button>
+
+    <script>
+        function showPage(event, pageId) {
+            if (event && event.preventDefault) {
+                event.preventDefault();
+            }
+
+            // Hide mobile menu
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('active');
+            document.querySelector('.hamburger').classList.remove('active');
+
+            // Close all dropdowns
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.remove('open');
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('dropdown-open');
+            });
+
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function toggleDropdown(event, menuId) {
+            event.preventDefault();
+            const menu = document.getElementById(menuId);
+            const btn = event.target.closest('.nav-link');
+            
+            // Close other open dropdowns
+            document.querySelectorAll('.dropdown-menu').forEach(m => {
+                if (m.id !== menuId) {
+                    m.classList.remove('open');
+                }
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link !== btn) {
+                    link.classList.remove('dropdown-open');
+                }
+            });
+
+            // Toggle current dropdown
+            menu.classList.toggle('open');
+            btn.classList.toggle('dropdown-open');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-item')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('open');
+                });
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('dropdown-open');
+                });
+            }
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const header = document.querySelector('header');
+            
+            if (!header.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
